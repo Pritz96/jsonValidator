@@ -1,4 +1,5 @@
 **JSON Validator**
+
 This a JSON Validator written in Go, it has a HTML frontend to paste JSON into with a button to check if your JSON is valid.
 
 **Usage**
