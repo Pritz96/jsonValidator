@@ -2,8 +2,51 @@ package main
 
 import (
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"testing"
 )
+
+func TestFormHandler(t *testing.T) {
+	tests := []struct {
+		method         string
+		expectedStatus int
+	}{
+		{
+			method:         "GET",
+			expectedStatus: http.StatusMethodNotAllowed,
+		},
+		{
+			method:         "POST",
+			expectedStatus: http.StatusOK,
+		},
+		{
+			method:         "DELETE",
+			expectedStatus: http.StatusMethodNotAllowed,
+		},
+	}
+	for _, test := range tests {
+		req, err := http.NewRequest(test.method, "/formHandler", nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		resp := httptest.NewRecorder()
+		handler := http.HandlerFunc(formHandler)
+		handler.ServeHTTP(resp, req)
+
+		status := resp.Code
+		if status != test.expectedStatus {
+			t.Errorf("%s method returned wrong status code: got %v want %v",
+				test.method, status, test.expectedStatus)
+		}
+
+		// expected := test.expectedResponse
+		// if resp.Body.String() != expected {
+		// 	t.Errorf("handler returned unexpected body: got %v want %v",
+		// 		resp.Body.String(), expected)
+		// }
+	}
+}
 
 func TestValidateJSON(t *testing.T) {
 	tests := []struct {

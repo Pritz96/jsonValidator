@@ -3,19 +3,30 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 )
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hi")
+	if r.Method == "POST" {
+		w.WriteHeader(http.StatusOK)
+		r.ParseForm()
+		json := r.FormValue("json")
+		fmt.Fprintf(w, json)
+	} else {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("form.html"))
+	tmpl.Execute(w, nil)
 }
 
 func main() {
 	mux := http.NewServeMux()
-	tmpl := template.Must(template.ParseFiles("form.html"))
-	mux.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		tmpl.Execute(w, nil)
-	}))
+	mux.Handle("/", http.HandlerFunc(indexHandler))
 	mux.Handle("/formHandler", http.HandlerFunc(formHandler))
+	log.Println("Starting JSON Validator ...")
 	http.ListenAndServe(":8080", mux)
 }

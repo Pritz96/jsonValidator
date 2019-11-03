@@ -2,12 +2,14 @@
 <html>
 <body>
 
-<form action="/formHandler" method="POST" id="jsonForm">
+<h1>JSON Validator</h1>
+<p> Paste your JSON here </p>
+
+<form action="/formHandler" method="post">
+  <textarea name="json" rows="30" cols="50"></textarea>
+  <br>
   <input type="submit" value="Validate JSON">
 </form>
-
-<textarea rows="40" cols="70" name="comment" form="usrform">
-</textarea>
 
 </body>
 </html>
