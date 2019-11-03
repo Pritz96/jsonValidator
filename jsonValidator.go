@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
@@ -11,8 +12,13 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		w.WriteHeader(http.StatusOK)
 		r.ParseForm()
-		json := r.FormValue("json")
-		fmt.Fprintf(w, json)
+		jsonInput := r.FormValue("json")
+		outcome := json.Valid([]byte(jsonInput))
+		if outcome {
+			fmt.Fprintf(w, "Valid JSON")
+		} else {
+			fmt.Fprintf(w, "Invalid JSON")
+		}
 	} else {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
