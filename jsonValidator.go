@@ -33,6 +33,6 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/", http.HandlerFunc(indexHandler))
 	mux.Handle("/formHandler", http.HandlerFunc(formHandler))
-	log.Println("Starting JSON Validator ...")
+	log.Println("Starting JSON Validator on :8080 ...")
 	http.ListenAndServe(":8080", mux)
 }

@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body style="background-color:rgb(60, 81, 83);">
 
-<h1>JSON Validator</h1>
-<p> Paste your JSON here </p>
+<h1 style="color:white;">JSON Validator</h1>
+<p style="color:white;">Paste your JSON here</p>
+
+<style type="text/css">
+  textarea {
+   width: 600px;
+   height: 300px;
+   font: normal 14px verdana;
+   line-height: 25px;
+   padding: 2px 10px;
+   border: solid 1px #ddd;
+  }
+</style>
 
 <form action="/formHandler" method="post">
   <textarea name="json" rows="30" cols="50"></textarea>
