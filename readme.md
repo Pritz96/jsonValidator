@@ -1,11 +1,15 @@
-**JSON Validator**
+# JSON Validator
 
-This a JSON Validator written in Go, it has a HTML frontend to paste JSON into with a button to check if your JSON is valid.
-![](jsonValidator.jpg)
+This a JSON Validator written in Go, it has a HTML frontend to paste JSON into with a button to check if your JSON is valid
 
-**Usage**
+## UI
+
+![](jsonValidator.png)
+
+## Usage
+
 - `cd` into `/jsonValidator`
 - run `go run jsonValidator.go` 
-- navigate to `localhost:8080` to use it 
+- navigate to `localhost:8080` to use the validator
 
-It can also be built and ran in Docker.
+It can also be built and ran in Docker using the provided docker image

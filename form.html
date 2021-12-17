@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color:rgb(60, 81, 83);">
+  <body>
+    <h1>JSON Validator</h1>
 
-<h1 style="color:white;">JSON Validator</h1>
-<p style="color:white;">Paste your JSON here</p>
+    <style type="text/css">
+      textarea {
+        width: 600px;
+        height: 400px;
+        border: solid 2px rgb(0, 0, 0);
+        resize: none;
+      }
+      input[type="submit"] {
+        background-color: #4caf50;
+        width: 600px;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        padding: 16px 32px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
 
-<style type="text/css">
-  textarea {
-   width: 600px;
-   height: 300px;
-   font: normal 14px verdana;
-   line-height: 25px;
-   padding: 2px 10px;
-   border: solid 1px #ddd;
-  }
-</style>
-
-<form action="/formHandler" method="post">
-  <textarea name="json" rows="30" cols="50"></textarea>
-  <br>
-  <input type="submit" value="Validate JSON">
-</form>
-
-</body>
+    <form action="/formHandler" method="post">
+      <textarea placeholder="Paste JSON here"></textarea>
+      <br />
+      <input type="submit" value="Validate JSON" />
+    </form>
+  </body>
 </html>
